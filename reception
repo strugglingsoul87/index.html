@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Priti & Soumyadip - Wedding Invitation</title>
+
+  <!-- Google Fonts: Great Vibes & Cinzel for traditional royal elegance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-maroon: #4a0404;
+      --deep-maroon: #2e0202;
+      --gold: #d4af37;
+      --light-gold: #f3e5ab;
+      --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --card-border: rgba(212, 175, 55, 0.35);
+      --text-white: #fefefe;
+      --text-sub: #eedbb2;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: radial-gradient(circle at center, var(--bg-maroon), var(--deep-maroon));
+      color: var(--text-white);
+      text-align: center;
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Subtle Gold Mandala Background Overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(212, 175, 55, 0.08) 1px, transparent 1px);
+      background-size: 28px 28px;
+      z-index: -1;
+    }
+
+    /* Floating Music Button */
+    .music-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--gold-gradient);
+      color: #3b0202;
+      border: none;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+      z-index: 1000;
+      transition: transform 0.3s ease;
+    }
+    .music-btn.playing {
+      animation: spin 5s linear infinite;
+    }
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 80px 20px 40px;
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .om-symbol {
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .sub-title {
+      font-family: 'Cinzel', serif;
+      letter-spacing: 3px;
+      font-size: 0.95rem;
+      color: var(--light-gold);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .couple-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(3.2rem, 9vw, 5.5rem);
+      color: var(--gold);
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 10px 0;
+      line-height: 1.2;
+    }
+
+    .ampersand {
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      color: var(--light-gold);
+      display: block;
+      margin: -10px 0;
+    }
+
+    .invitation-quote {
+      max-width: 600px;
+      font-size: 1rem;
+      color: var(--text-sub);
+      margin: 25px auto;
+      font-style: italic;
+    }
+
+    /* Parents Section */
+    .parents-box {
+      max-width: 700px;
+      margin: 30px auto;
+      padding: 25px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+    }
+
+    .parents-box h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      color: var(--light-gold);
+      margin-bottom: 15px;
+    }
+
+    .parents-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 600px) {
+      .parents-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+    }
+
+    .parents-grid strong {
+      display: block;
+      color: var(--gold);
+      margin-bottom: 5px;
+      font-size: 1.05rem;
+    }
+
+    /* Countdown Timer */
+    .countdown-section {
+      padding: 40px 20px;
+    }
+
+    .countdown-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      max-width: 600px;
+      margin: 20px auto 0;
+      flex-wrap: wrap;
+    }
+
+    .time-box {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      width: 80px;
+      padding: 12px 6px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .time-box span {
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold);
+      display: block;
+    }
+
+    .time-box small {
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      color: var(--text-sub);
+      letter-spacing: 1px;
+    }
+
+    /* Timeline & Events */
+    .events-section {
+      padding: 60px 20px;
+    }
+
+    .section-heading {
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      color: var(--gold);
+      position: relative;
+      margin-bottom: 40px;
+    }
+
+    .section-heading::after {
+      content: "♦";
+      display: block;
+      color: var(--light-gold);
+      font-size: 1rem;
+      margin-top: 5px;
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .event-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 35px 25px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .event-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--gold);
+    }
+
+    .event-card i {
+      font-size: 2.2rem;
+      color: var(--gold);
+      margin-bottom: 15px;
+    }
+
+    .event-card h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.4rem;
+      color: var(--light-gold);
+      margin-bottom: 10px;
+    }
+
+    .event-card .date {
+      font-weight: 600;
+      color: var(--gold);
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+
+    /* Venue & Map Section */
+    .venue-section {
+      padding: 50px 20px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .venue-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 30px;
+      backdrop-filter: blur(8px);
+    }
+
+    .venue-card h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .venue-card p {
+      color: var(--text-sub);
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--gold-gradient);
+      color: #3b0202;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+    }
+
+    /* RSVP & Wishes */
+    .rsvp-section {
+      padding: 50px 20px 80px;
+    }
+
+    .rsvp-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 25px;
+      flex-wrap: wrap;
+    }
+
+    .whatsapp-btn {
+      background: #25D366;
+      color: white;
+    }
+    .whatsapp-btn:hover {
+      background: #1ebd5b;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+    }
+
+    footer {
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+      padding: 25px;
+      font-size: 0.85rem;
+      color: var(--text-sub);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Music Toggle -->
+  <button id="musicToggle" class="music-btn" title="Play/Pause Shehnai / Music">
+    <i class="fa-solid fa-music"></i>
+  </button>
+  <!-- Replace src with your preferred Bengali wedding shehnai / instrumental audio file -->
+  <audio id="weddingMusic" loop>
+    <source src="https://assets.mixkit.co/music/preview/mixkit-indian-traditional-music-2198.mp3" type="audio/mp3">
+  </audio>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="om-symbol">ॐ</div>
+    <p class="sub-title">We Request The Honor Of Your Presence</p>
+    <h1 class="couple-title">Priti</h1>
+    <span class="ampersand">&amp;</span>
+    <h1 class="couple-title">Soumyadip</h1>
+    <p class="invitation-quote">
+      "Together with their families, they invite you to celebrate their wedding and shower them with your warm blessings as they begin their new journey."
+    </p>
+
+    <!-- Parents Info -->
+    <div class="parents-box">
+      <h3>With Blessings of Our Beloved Parents</h3>
+      <div class="parents-grid">
+        <div>
+          <strong>Bride's Parents</strong>
+          <p>D/O Shukla Mondal &amp; Sankar Chandra Mondal</p>
+        </div>
+        <div>
+          <strong>Groom's Parents</strong>
+          <p>S/O Shyamali Ranjan &amp; Pradip Ranjan</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Countdown Timer -->
+  <section class="countdown-section">
+    <h3 class="sub-title">Counting Down To The Big Day</h3>
+    <div class="countdown-container">
+      <div class="time-box">
+        <span id="days">00</span>
+        <small>Days</small>
+      </div>
+      <div class="time-box">
+        <span id="hours">00</span>
+        <small>Hours</small>
+      </div>
+      <div class="time-box">
+        <span id="minutes">00</span>
+        <small>Mins</small>
+      </div>
+      <div class="time-box">
+        <span id="seconds">00</span>
+        <small>Secs</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wedding & Reception Timeline -->
+  <section class="events-section">
+    <h2 class="section-heading">Celebrations</h2>
+    <div class="events-grid">
+      <!-- Wedding -->
+      <div class="event-card">
+        <i class="fa-solid fa-hands-praying"></i>
+        <h4>Subho Bibaho</h4>
+        <p class="date">Wednesday, 25 November 2026</p>
+        <p>Join us for the auspicious wedding rituals, garland exchange, and saat paak as we unite for eternity.</p>
+      </div>
+
+      <!-- Reception -->
+      <div class="event-card">
+        <i class="fa-solid fa-champagne-glasses"></i>
+        <h4>Gala Reception</h4>
+        <p class="date">Friday, 27 November 2026</p>
+        <p>An evening filled with joy, dinner, music, and celebrations to welcome the newlyweds.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Venue / Google Maps Section -->
+  <section class="venue-section">
+    <h2 class="section-heading">The Venue</h2>
+    <div class="venue-card">
+      <i class="fa-solid fa-map-location-dot" style="font-size: 2.2rem; color: var(--gold); margin-bottom: 15px; display: block;"></i>
+      <h4>Pal Garden</h4>
+      <p>Vidyanagar, West Bengal</p>
+      <a href="https://maps.app.goo.gl/MviX2BrAx2RUr2qa7" target="_blank" class="btn">
+        <i class="fa-solid fa-location-arrow"></i> View On Google Maps
+      </a>
+    </div>
+  </section>
+
+  <!-- RSVP Section -->
+  <section class="rsvp-section">
+    <h2 class="section-heading">Will You Join Us?</h2>
+    <p style="color: var(--text-sub); max-width: 550px; margin: 0 auto;">
+      Your presence and blessings will make our special day truly memorable. Please let us know if you will be attending!
+    </p>
+    <div class="rsvp-buttons">
+      <!-- WhatsApp RSVP Button (replace 919876543210 with your phone number) -->
+      <a href="https://wa.me/919876543210?text=Hi%20Priti%20%26%20Soumyadip,%20heartiest%20congratulations!%20I%20will%20be%20attending%20your%20wedding!" target="_blank" class="btn whatsapp-btn">
+        <i class="fa-brands fa-whatsapp"></i> RSVP on WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>With warm regards &amp; love,</p>
+    <p style="color: var(--gold); font-weight: 600; margin-top: 5px;">Mondal &amp; Ranjan Families</p>
+  </footer>
+
+  <script>
+    // Live Countdown Timer to 25 Nov 2026
+    const targetDate = new Date("November 25, 2026 18:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+
+      if (diff > 0) {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerText = String(days).padStart(2, '0');
+        document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+        document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+        document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+      } else {
+        document.querySelector(".countdown-container").innerHTML = "<p style='color:var(--gold); font-size: 1.3rem;'>The Wedding Celebrations Have Begun! ✨</p>";
+      }
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Background Audio Play / Pause
+    const musicBtn = document.getElementById("musicToggle");
+    const audio = document.getElementById("weddingMusic");
+
+    musicBtn.addEventListener("click", () => {
+      if (audio.paused) {
+        audio.play().then(() => {
+          musicBtn.classList.add("playing");
+          musicBtn.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
+        }).catch(err => console.log("Playback blocked by browser"));
+      } else {
+        audio.pause();
+        musicBtn.classList.remove("playing");
+        musicBtn.innerHTML = '<i class="fa-solid fa-music"></i>';
+      }
+    });
+  </script>
+</body>
+</html>
+                                       
